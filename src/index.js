@@ -1,13 +1,39 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const morgan = require('morgan');
+const path = require('path');
 
-app.get('/', function (req, res) {
-    res.send('Hello World!');
+
+const app = express();
+
+// ---------------------------------- Db connection --------------------------------
+const { mongoose } = require('./database');
+
+// ---------------------------------- Settings --------------------------------
+app.set('port', process.env.PORT || 3000);
+
+
+// ---------------------------------- Middlewares --------------------------------
+// visualizar las salidas de la peticiones en el server
+app.use(morgan('dev'));
+// lo que  hace esto que cada vez que  llege a un dato al server pase por esta  funcion
+// si lo es vamos a poder acceder a el
+app.use(express.json()); //antes (body.parser)
+
+
+// ----------------------------------  Routes  ----------------------------------
+app.use('/api/task', require('./routes/task.routes'));
+
+
+// ----------------------------------   Static Files ----------------------------------
+app.use(express.static(path.join(__dirname, 'public')));;
+
+
+// ---------------------------------- Starting the server --------------------------------
+app.listen(app.get('port'), () => {
+    console.log(`Server on port ${app.get('port')}`);
 });
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
-});
+
 
 // const express = require('express');
 // const morgan = require('morgan');
