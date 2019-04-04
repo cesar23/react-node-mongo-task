@@ -20,3 +20,22 @@ npm run dev
 #---------------------------------------- INSTALACION REACT
 npm install webpack -D
 npm install webpack-cli -D
+
+npm install react react-dom
+
+
+#---------------------------------------- instalacion de babel
+
+# babel-preset-react  ( con esto le decimos que babel traducira react)
+# babel-preset-env  (espara  decirle que tradusca  todo el codigo  moderno que )
+
+
+npm install --save-dev babel-loader
+#Para el core:
+npm install --save-dev @babel/core
+
+#Para dos presets:
+
+npm install @babel/preset-react -D
+npm install @babel/preset-env -D
+#---------------------------------

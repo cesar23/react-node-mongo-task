@@ -21,12 +21,13 @@ router.get('/',async (req, res) => {
 
 })
 
-// GET one Task
+// Obtener
 router.get('/:id', async (req, res) => {
     // const task = await Task.findById(req.params.id);
     const task = await Task.findById({_id:req.params.id});
     res.json(task);
 });
+
 
 // ADD a new task
 router.post('/', async (req, res) => {
